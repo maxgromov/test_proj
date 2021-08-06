@@ -1,0 +1,19 @@
+type User{
+    id: Int
+    name:String
+
+}
+
+type Query{
+    findUser(id:Int!): User
+}
+
+type Mutation{
+    name:String
+}
+
+
+schema {
+    query: Query
+    mutation: Mutation
+}

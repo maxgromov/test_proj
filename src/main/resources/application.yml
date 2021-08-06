@@ -1,0 +1,23 @@
+micronaut:
+  application:
+    name: test_proj
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/postgres
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: '12ed1zz1'
+
+
+redis:
+  uri: redis://localhost
+  caches:
+    users-cache:
+      # expire one hour after write
+      expire-after-write: 1h
+
+graphql:
+  enabled: true
+  path: /graphql
+
+
