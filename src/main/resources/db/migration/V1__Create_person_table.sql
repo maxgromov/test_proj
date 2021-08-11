@@ -1,4 +1,7 @@
-create table PERSON (
-                        ID int not null,
-                        NAME text not null
+create table "Users"
+(
+    id serial
+        constraint users_pk
+            primary key,
+    name text
 );

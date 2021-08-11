@@ -1,6 +1,7 @@
 package ru.mydemo.repository;
 import io.micronaut.cache.annotation.Cacheable;
 import org.jooq.DSLContext;
+import org.jooq.Record2;
 import ru.mydemo.tables.Users;
 import ru.mydemo.tables.records.UsersRecord;
 
@@ -17,11 +18,11 @@ public class UsersRepository {
     }
 
 //    @Cacheable("users-cache")
-    public String findUserByID(Integer id){
-        return dslContext.select(Users.USERS.NAME).
+    public UsersRecord findUserByID(Integer id){
+        return dslContext.select(Users.USERS.NAME, Users.USERS.ID).
                 from(Users.USERS).
                 where(Users.USERS.ID.eq(id)).
-                fetchAnyInto(String.class);
+                fetchOneInto(UsersRecord.class);
     }
     public UsersRecord createUser(String name){
         return dslContext.insertInto(Users.USERS)
@@ -42,6 +43,13 @@ public class UsersRepository {
                 delete(Users.USERS).
                 where(Users.USERS.NAME.eq(name)).
                 execute();
+    }
+
+    public List<Record2<Integer, String>> getUsersTable(){
+        return dslContext.select(Users.USERS.ID,  Users.USERS.NAME)
+                .from(Users.USERS)
+                .fetch();
+
     }
 
 }

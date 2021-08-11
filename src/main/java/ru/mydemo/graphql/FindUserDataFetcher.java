@@ -2,13 +2,14 @@ package ru.mydemo.graphql;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
+import ru.mydemo.dto.UserDTO;
 import ru.mydemo.repository.UsersRepository;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class FindUserDataFetcher implements DataFetcher<String> {
+public class FindUserDataFetcher implements DataFetcher<UserDTO> {
     private final UsersRepository usersRepository;
 
     @Inject
@@ -17,8 +18,8 @@ public class FindUserDataFetcher implements DataFetcher<String> {
     }
 
     @Override
-    public String get(DataFetchingEnvironment environment) throws Exception {
-        Integer id = (Integer)environment.getArgument("id") ;
-        return usersRepository.findUserByID(id);
+    public UserDTO get(DataFetchingEnvironment environment) throws Exception {
+        Integer id = (Integer) environment.getArgument("id") ;
+        return new UserDTO(usersRepository.findUserByID(id));
     }
 }

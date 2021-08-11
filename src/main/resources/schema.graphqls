@@ -1,16 +1,24 @@
+#-------------Query----------------
 type User{
-    id: Int
     name:String
-
+    id:Int
 }
-
 type Query{
-    findUser(id:Int!): User
+    hello: String
+    findUser(id:Int!): User!
 }
+#-------------Query---------------
 
-type Mutation{
-    name:String
+
+#------------Mutations-------------
+type UserCreateData{
+    user: User
+    error:String
 }
+type Mutation{
+    userCreate(name: String!): UserCreateData
+}
+#------------Mutations-------------
 
 
 schema {

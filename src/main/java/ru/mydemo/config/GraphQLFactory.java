@@ -10,6 +10,8 @@ import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.core.io.ResourceResolver;
 import ru.mydemo.graphql.FindUserDataFetcher;
+import ru.mydemo.graphql.HelloDataFetcher;
+import ru.mydemo.graphql.mutation.UserCreateMutationDataFetcher;
 
 import javax.inject.Singleton;
 import java.io.BufferedReader;
@@ -19,7 +21,10 @@ public class GraphQLFactory {
 
     @Bean
     @Singleton
-    public GraphQL graphQL(ResourceResolver resourceResolver, FindUserDataFetcher findUserDataFetcher) {
+    public GraphQL graphQL(ResourceResolver resourceResolver,
+                           HelloDataFetcher helloDataFetcher,
+                           FindUserDataFetcher findUserDataFetcher,
+                           UserCreateMutationDataFetcher userCreateMutationDataFetcher) {
 
         SchemaParser schemaParser = new SchemaParser();
         SchemaGenerator schemaGenerator = new SchemaGenerator();
@@ -32,7 +37,11 @@ public class GraphQLFactory {
         // Create the runtime wiring.
         RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring()
                 .type("Query", typeWiring -> typeWiring
-                        .dataFetcher("findUser", findUserDataFetcher))
+                        .dataFetcher("findUser", findUserDataFetcher)
+                        .dataFetcher("hello", helloDataFetcher))
+                .type("Mutation", typeWiring -> typeWiring
+                        .dataFetcher("userCreate", userCreateMutationDataFetcher)
+                        )
                 .build();
 
         // Create the executable schema.

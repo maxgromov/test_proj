@@ -6,6 +6,7 @@ public class UserDTO {
     private String name;
     private Integer id;
 
+    public UserDTO(){}
 
     public UserDTO(UsersRecord usersRecord){
         this.id = usersRecord.getId();

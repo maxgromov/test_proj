@@ -14,7 +14,7 @@ redis:
   caches:
     users-cache:
       # expire one hour after write
-      expire-after-write: 1h
+      expire-after-write: 20s
 
 graphql:
   enabled: true
