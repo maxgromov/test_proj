@@ -2,11 +2,12 @@ package ru.mydemo.graphql;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import ru.mydemo.dto.UserDTO;
 import ru.mydemo.repository.UsersRepository;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+
 
 @Singleton
 public class FindUserDataFetcher implements DataFetcher<UserDTO> {

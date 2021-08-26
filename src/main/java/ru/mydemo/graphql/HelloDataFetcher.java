@@ -2,8 +2,8 @@ package ru.mydemo.graphql;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
+import jakarta.inject.Singleton;
 
-import javax.inject.Singleton;
 
 @Singleton
 public class HelloDataFetcher implements DataFetcher<String> {

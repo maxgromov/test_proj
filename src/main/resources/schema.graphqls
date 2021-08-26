@@ -2,6 +2,7 @@
 type User{
     name:String
     id:Int
+    password: String
 }
 type Query{
     hello: String
@@ -16,7 +17,7 @@ type UserCreateData{
     error:String
 }
 type Mutation{
-    userCreate(name: String!): UserCreateData
+    userCreate(name: String!, password: String!): UserCreateData
 }
 #------------Mutations-------------
 

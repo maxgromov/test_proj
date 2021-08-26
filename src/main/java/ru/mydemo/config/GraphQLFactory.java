@@ -9,11 +9,12 @@ import graphql.schema.idl.TypeDefinitionRegistry;
 import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.core.io.ResourceResolver;
+import jakarta.inject.Singleton;
 import ru.mydemo.graphql.FindUserDataFetcher;
 import ru.mydemo.graphql.HelloDataFetcher;
 import ru.mydemo.graphql.mutation.UserCreateMutationDataFetcher;
 
-import javax.inject.Singleton;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 @Factory

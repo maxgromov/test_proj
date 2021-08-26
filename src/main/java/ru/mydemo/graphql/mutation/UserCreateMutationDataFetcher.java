@@ -2,12 +2,13 @@ package ru.mydemo.graphql.mutation;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import ru.mydemo.dto.UserData;
 import ru.mydemo.repository.UsersRepository;
 import ru.mydemo.service.UserService;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+
 
 @Singleton
 public class UserCreateMutationDataFetcher implements DataFetcher<UserData> {
@@ -21,6 +22,7 @@ public class UserCreateMutationDataFetcher implements DataFetcher<UserData> {
     @Override
     public UserData get(DataFetchingEnvironment environment) throws Exception {
         String name = environment.getArgument("name").toString();
-        return userService.create(name);
+        String password = environment.getArgument("password").toString();
+        return userService.create(name, password);
     }
 }

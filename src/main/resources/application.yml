@@ -1,6 +1,20 @@
 micronaut:
   application:
     name: test_proj
+  security:
+    enabled: true
+    intercept-url-map:
+      - pattern: /graphql
+        access:
+          - isAnonymous()
+      - pattern: /user/create/
+        access:
+          - isAuthenticated()
+
+    reject-not-found: true
+    authentication: cookie
+
+
 datasources:
   default:
     url: jdbc:postgresql://localhost:5432/postgres
