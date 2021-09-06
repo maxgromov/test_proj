@@ -31,10 +31,10 @@ public class UserService {
         return new UserData(new UserDTO(usersRepository.createUser(name, encrypt(password))));
     }
 
-    public boolean auth(String name, String password){
+    public UsersRecord auth(String name, String password){
         password = password.trim();
-        UsersRecord user = usersRepository.findUserByNameAndPassword(name, encrypt(password));
-        return user!= null;
+        return  usersRepository.findUserByNameAndPassword(name, encrypt(password));
+
     }
 
     private String encrypt(String password){

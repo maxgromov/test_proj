@@ -40,7 +40,7 @@ dependencies {
     implementation ('com.google.guava:guava:30.1.1-jre')
 
 
-
+    implementation("io.micronaut.views:micronaut-views-velocity")
 
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.postgresql:postgresql")
@@ -53,16 +53,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("io.micronaut.test:micronaut-test-junit5:2.3.7")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
-
-
-
-
-
 }
-
-
-
-
 
 test {
     useJUnitPlatform()

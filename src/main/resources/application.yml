@@ -6,13 +6,26 @@ micronaut:
     intercept-url-map:
       - pattern: /graphql
         access:
+          - isAuthenticated()
+      - pattern: /login
+        access:
           - isAnonymous()
-      - pattern: /user/create/
+      - pattern: /user/create
         access:
           - isAuthenticated()
 
     reject-not-found: true
     authentication: cookie
+    token:
+      enabled: true
+      jwt:
+        enabled: true
+        signatures:
+          secret:
+            generator:
+              secret: 'cGxlYXNlQ2hhbmdlVGhpc1NlY3JldEZvckFOZXdPbmU='
+              jws-algorithm: HS256
+
 
 
 datasources:

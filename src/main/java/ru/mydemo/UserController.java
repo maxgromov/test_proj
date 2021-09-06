@@ -6,6 +6,7 @@ import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.authentication.Authentication;
 import io.micronaut.security.rules.SecurityRule;
 import jakarta.inject.Inject;
 import org.jooq.Record2;
@@ -16,9 +17,11 @@ import ru.mydemo.repository.UsersRepository;
 import ru.mydemo.service.UserService;
 
 
+import java.lang.annotation.ElementType;
 import java.util.List;
 
 @Controller("/user")
+
 public class UserController {
     private final UsersRepository usersRepository;
     private final UserService userService;
@@ -29,10 +32,9 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @Get(value = "/find",
             produces = MediaType.TEXT_PLAIN)
-    @Cacheable("users-cache")
+//    @Cacheable("users-cache")
 //    public HttpResponse<String> get(@QueryValue Integer id) {
 //        UsersRecord user = usersRepository.findUserByID(id);
 //        if (user ==null){
@@ -55,7 +57,8 @@ public class UserController {
     @Post(value = "/create",
             produces = MediaType.APPLICATION_JSON,
             consumes = MediaType.APPLICATION_JSON)
-//    @Secured(SecurityRule.IS_AUTHENTICATED)
+
+
     public HttpResponse<UserDTO> create(UserCreateInput input){
         UserData userData = userService.create(input.getName(), input.getPassword());
         if (userData.getError()!=null){

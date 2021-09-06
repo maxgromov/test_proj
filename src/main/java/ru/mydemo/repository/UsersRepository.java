@@ -18,21 +18,20 @@ public class UsersRepository {
         this.dslContext = dslContext;
     }
 
-    @Cacheable("users-cache")
+//    @Cacheable("users-cache")
     public UsersRecord findUserByID(Integer id){
         return dslContext.select(Users.USERS.NAME, Users.USERS.ID).
                 from(Users.USERS).
                 where(Users.USERS.ID.eq(id)).
-                fetchOneInto(UsersRecord.class);
+                fetchAnyInto(UsersRecord.class);
     }
 
     public UsersRecord findUserByNameAndPassword(String name, String password){
         return dslContext.select().
                 from(Users.USERS).
                 where(Users.USERS.NAME.eq(name).and(Users.USERS.PASSWORD.eq(password))).
-                fetchOneInto(UsersRecord.class);
+                fetchAnyInto(UsersRecord.class);
     }
-
 
     public UsersRecord createUser(String name, String password){
         UsersRecord usersRecord = dslContext.newRecord(Users.USERS);
